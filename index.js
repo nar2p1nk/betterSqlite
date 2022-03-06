@@ -1,6 +1,6 @@
 const database = require('better-sqlite3');
 
-const db = new database('main.db',{verbose:console.log});
+const db = new database('main.db');
 
 const insert = db.prepare(`INSERT INTO catNames(name,sex) VALUES(?,?)`);
 
@@ -26,6 +26,16 @@ const get = db.prepare(`SELECT * FROM catNames WHERE id = ?`);
 
 const getAll = db.prepare(`SELECT * FROM catNames`);
 
-console.log(getAll.all())
+function getAllFormal(){
+    const rows = db.prepare(`SELECT * FROM  catNames`);
+    rows.all().map(row=>{
+        if(row.sex == 1){
+            console.log(`${row.name} is a boy!`)
+        }
+        else{console.log(`${row.name} is a girl!`)}
+    })
+}
+
+console.log(getAllFormal())
 
 // 0 = female
