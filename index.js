@@ -22,8 +22,8 @@ const insertMany = db.transaction((cats)=>{
 //]);
 
 
-const get = db.prepare(`SELECT name,sex FROM catNames WHERE id = ?`);
+const get = db.prepare(`SELECT * FROM catNames WHERE id = ?`);
 
-console.log(get.run(2))
+console.log(get.get(3))
 
 // 0 = female
